@@ -9,7 +9,7 @@ module.exports = {
   }],
 
   deploy : {
-    test : {
+    production : {
       user : 'root',
       host : 'tc',
       ref  : 'origin/master',
