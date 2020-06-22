@@ -1,8 +1,9 @@
+const process = require('process')
 module.exports = {
   apps : [{
     name: 'my-server',
     script: 'index.js',
-    watch: '.',
+    watch: process.env.NODE_ENV === 'production' ? false : '.',
     watch_delay: 1000,
     ignore_watch: ['node_modules']
   }],
@@ -12,10 +13,10 @@ module.exports = {
       user : 'root',
       host : 'tc',
       ref  : 'origin/master',
-      repo : 'https://github.com/wjy4124/my-server.git',
+      repo : 'git@github.com:wjy4124/mcy-server.git',
       path : '/server',
       'pre-deploy-local': '',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env test',
+      'post-deploy' : 'cnpm install && pm2 reload ecosystem.config.js --env test',
       'pre-setup': ''
     }
   }
