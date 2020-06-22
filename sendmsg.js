@@ -7,4 +7,8 @@ const robot = new ChatBot({
   secret: process.env.DINGTALK_SECRET
 })
 
-robot.text('depoly ok!', {})
+robot.text('depoly ok!', {}).then(e => {
+  console.log('send success')
+}).catch(e => {
+  console.error('send error')
+})
