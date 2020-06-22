@@ -5,4 +5,4 @@ const robot = new ChatBot({
   secret: process.env.DINGTALK_SECRET
 })
 
-robot.text('depoly ok!')
+robot.text('depoly ok!', {})
