@@ -6,8 +6,8 @@ const nodemailer = require("nodemailer");
 const ChatBot = require('dingtalk-robot-sender');
 const robot = new ChatBot({
   baseUrl: 'https://oapi.dingtalk.com/robot/send',
-  accessToken: '57d8b3f4ba6cfdb95a8bff0a3add84b5a725728a43a4bc450d6b9009e0fad71b',
-  secret: 'SEC7ae5bc6e001cf7f71f2f294746e4e14e345d98bc161e9281815b25f8f0effca7'
+  accessToken: process.env.DINGTALK_ACCESSTOKEN,
+  secret: process.env.DINGTALK_SECRET
 })
 
 let send = (res, {code = 0, msg = 'success', data = {}} = {}) => {
@@ -23,34 +23,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 app.get('/test', (req, res) => {
   send(res)
-})
-app.get('/mail', async (req, res) => {
-  try {
-    let testAccount = await nodemailer.createTestAccount();
-    console.info('test')
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: testAccount.user, // generated ethereal user
-        pass: testAccount.pass, // generated ethereal password
-      },
-    });
-
-    console.info('created')
-    // send mail with defined transport object
-    await transporter.sendMail({
-      from: '"Fred Foo 👻"', // sender address
-      to: "wjy4124@qq.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
-      html: "<b>Hello world?</b>", // html body
-    });
-    send(res)
-  } catch (e) {
-    send(res, {code: 1, msg: 'failed', data: e})
-  }
 })
 app.get('/mail', async (req, res) => {
   try {
