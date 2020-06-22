@@ -16,7 +16,7 @@ module.exports = {
       repo : 'git@github.com:wjy4124/mcy-server.git',
       path : '/server',
       'pre-deploy-local': '',
-      'post-deploy' : 'cnpm install && pm2 reload ecosystem.config.js --env production',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production',
       'pre-setup': ''
     }
   }
