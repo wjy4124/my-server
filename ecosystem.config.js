@@ -1,9 +1,8 @@
-const process = require('process')
 module.exports = {
   apps : [{
     name: 'my-server',
     script: 'index.js',
-    watch: process.env.NODE_ENV === 'production' ? false : '.',
+    watch: '.',
     watch_delay: 1000,
     ignore_watch: ['node_modules']
   }],
