@@ -1,4 +1,3 @@
-const process = require('process');
 const ChatBot = require('dingtalk-robot-sender');
 console.info('DINGTALK_ACCESSTOKEN', process.env.DINGTALK_ACCESSTOKEN)
 console.info('DINGTALK_SECRET', process.env.DINGTALK_SECRET)

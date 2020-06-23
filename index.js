@@ -17,10 +17,8 @@ let send = (res, {code = 0, msg = 'success', data = {}} = {}) => {
     data
   })
 }
-app.use((req, res, next) => {
-  next()
-})
 app.use(bodyParser.json())
+
 app.get('/test', (req, res) => {
   send(res)
 })
