@@ -1,0 +1,6 @@
+module.exports = {
+  SESSION_SECRET: '',
+  COOKIE_SECRET: '',
+  DINGTALK_ACCESSTOKEN: '',
+  DINGTALK_SECRET: ''
+}

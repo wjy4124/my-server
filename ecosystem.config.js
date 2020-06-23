@@ -4,7 +4,8 @@ module.exports = {
     script: 'index.js',
     watch: process.env.NODE_ENV === 'production' ? false : '.',
     watch_delay: 1000,
-    ignore_watch: ['node_modules', 'session']
+    ignore_watch: ['node_modules', 'session'],
+    env: require('./env.js')
   }],
 
   deploy : {
