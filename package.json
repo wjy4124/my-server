@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 startOrRestart ecosystem.config.js",
+    "dev": "pm2 startOrRestart ecosystem.config.js && pm2 logs",
     "stop": "pm2 delete ecosystem.config.js",
     "depoly": "pm2 deploy ecosystem.config.js production start"
   },
