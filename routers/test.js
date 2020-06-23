@@ -1,14 +1,12 @@
 const {Router} = require('express')
 const route = Router({})
-const nodemailer = require("nodemailer");
 const ChatBot = require('dingtalk-robot-sender');
+const {DINGTALK_SECRET, DINGTALK_ACCESSTOKEN} = require('../config')
 const robot = new ChatBot({
   baseUrl: 'https://oapi.dingtalk.com/robot/send',
-  accessToken: process.env.DINGTALK_ACCESSTOKEN,
-  secret: process.env.DINGTALK_SECRET
+  accessToken: DINGTALK_ACCESSTOKEN,
+  secret: DINGTALK_SECRET
 })
-
-
 // let send = ({code = 0, msg = 'success', data = {}} = {}) => {
 //   res.json({
 //     code,
@@ -18,35 +16,11 @@ const robot = new ChatBot({
 // }
 
 route.get('/ping', (req, res) => {
-  res.customRes()
+  res.cRes()
 })
 
-route.get('/mail', async (req, res) => {
-  try {
-    let testAccount = await nodemailer.createTestAccount();
-    let transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: testAccount.user, // generated ethereal user
-        pass: testAccount.pass, // generated ethereal password
-      },
-    });
-
-    console.info('created')
-    // send mail with defined transport object
-    await transporter.sendMail({
-      from: '"Fred Foo 👻"', // sender address
-      to: "wjy4124@qq.com", // list of receivers
-      subject: "Hello ✔", // Subject line
-      text: "Hello world?", // plain text body
-      html: "<b>Hello world?</b>", // html body
-    });
-    res.customRes()
-  } catch (e) {
-    res.customRes({code: 1, msg: 'failed', data: e})
-  }
+route.get('/userinfo', async (req, res) => {
+  res.cRes({data: req.user})
 })
 
 route.get('/ding', (req, res) => {
@@ -84,11 +58,11 @@ route.get('/ding', (req, res) => {
   robot.actionCard(card)
   .then((e) => {
     // TODO
-    res.customRes()
+    res.cRes()
   })
   .catch(e => {
     console.info(e)
-    res.customRes({code: 1, msg: 'fail', data: e})
+    res.cRes({code: 1, msg: 'fail', data: e})
   });
 })
 
